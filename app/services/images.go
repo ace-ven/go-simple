@@ -3,6 +3,7 @@ package services
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -74,7 +75,7 @@ func CreateImage(db *mongo.Database, w http.ResponseWriter, r *http.Request) {
 	var image models.Image
 	_ = json.NewDecoder(r.Body).Decode(&image)
 	collection := db.Collection("images")
-
+	fmt.Println(image)
 	result, err := collection.InsertOne(context.TODO(), image)
 
 	if err != nil {

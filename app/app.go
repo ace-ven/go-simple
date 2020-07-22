@@ -24,11 +24,13 @@ func (a *App) Initialize() {
 
 func (a *App) setRouters() {
 	a.Post("/api/users", a.handleRequest(services.InserUser))
+	a.Get("/api/users/findByName/{name}", a.handleRequest(services.FindUserByName))
 	a.Get("/api/images", a.handleRequest(services.GetImages))
 	a.Get("/api/images/{id}", a.handleRequest(services.GetImage))
 	a.Post("/api/images", a.handleRequest(services.CreateImage))
-	a.Put("api/images/{id}", a.handleRequest(services.UpdateImage))
-	a.Delete("api/images/{id}", a.handleRequest(services.DeleteImage))
+	a.Put("/api/images/{id}", a.handleRequest(services.UpdateImage))
+	a.Delete("/api/images/{id}", a.handleRequest(services.DeleteImage))
+	a.Post("/auth/login", a.handleRequest(services.Signin))
 
 }
 
